@@ -1,0 +1,71 @@
+<meta charset="utf-8">
+<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+
+<div id="app">
+    <!--div class="comp"></div-->
+    <!--comp></comp-->
+    <componente></componente>
+    <componente></componente>
+    <componente></componente>
+</div>
+
+<script>
+    // Vue.component('componente', {
+    //     template: `<h1>componente</h1>` // necessário comentar o template da instância Vue
+    // });
+    // const vm = new Vue({
+    //     el: "#app",
+    //     // el: 'comp',
+    //     // el: '.comp',
+    //     template: `
+    //         <div>
+    //             <h1>{{ aula }}</h1>
+    //             <h2>{{ modulo }}</h2>
+    //             <button @click="alterarAula">Alterar Aula</button>
+    //             <button @click="alterarModulo">Alterar Módulo</button>
+    //         </div>
+    //     `,
+    //     data: {
+    //         aula: "Aula: Montando instância Vue",
+    //         modulo: "Módulo: Instância Vue"
+    //     },
+    //     methods: {
+    //         alterarAula() {
+    //             this.aula += '#';
+    //         },
+    //         alterarModulo() {
+    //             this.modulo += '#';
+    //         }
+    //     }
+    // });
+
+    Vue.component('componente', {
+        template: `
+            <div>
+                <h1>{{ aula }}</h1>
+                <h2>{{ modulo }}</h2>
+                <button @click="alterarAula">Alterar Aula</button>
+                <button @click="alterarModulo">Alterar Módulo</button>
+            </div>
+        `,
+        data: function () { // No escopo de componente, data é uma função que retorna os dados.
+                            // Isso deve ser feito para que os dados não sejam compatilhados entre as instâncias dos componentes
+            return {
+                aula: "Aula: Montando instância Vue",
+                modulo: "Módulo: Instância Vue"
+            }
+        },
+        methods: {
+            alterarAula() {
+                this.aula += '#';
+            },
+            alterarModulo() {
+                this.modulo += '#';
+            }
+        }
+    });
+    const vm = new Vue({
+        el: "#app",
+    });
+
+</script>
